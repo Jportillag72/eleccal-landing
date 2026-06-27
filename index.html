@@ -789,7 +789,7 @@
         <a href="#clientes">Clientes</a>
         <a href="#proceso">Proceso</a>
       </nav>
-      <a class="button" href="mailto:victorcrodrigo@gmail.com?subject=Solicitud%20de%20diagn%C3%B3stico%20ElecCal">
+      <a class="button" href="https://mail.google.com/mail/?view=cm&fs=1&to=victorcrodrigo%40gmail.com&su=Solicitud%20de%20diagn%C3%B3stico%20ElecCal" target="_blank" rel="noopener">
         Solicitar diagnóstico
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M5 12h14"></path>
@@ -809,14 +809,14 @@
             Diagnóstico, reparación, mantenimiento, instalación, sustitución y retirada de equipos para hogares, alojamientos, inmobiliarias y pequeños negocios.
           </p>
           <div class="hero-actions">
-            <a class="button" href="mailto:victorcrodrigo@gmail.com?subject=Solicitud%20de%20valoraci%C3%B3n%20ElecCal">
+            <a class="button" href="https://mail.google.com/mail/?view=cm&fs=1&to=victorcrodrigo%40gmail.com&su=Solicitud%20de%20valoraci%C3%B3n%20ElecCal" target="_blank" rel="noopener">
               Pedir valoración
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14"></path>
                 <path d="m13 6 6 6-6 6"></path>
               </svg>
             </a>
-            <a class="button secondary" href="mailto:victorcrodrigo@gmail.com?subject=Consulta%20de%20servicios%20ElecCal">
+            <a class="button secondary" href="https://mail.google.com/mail/?view=cm&fs=1&to=victorcrodrigo%40gmail.com&su=Consulta%20de%20servicios%20ElecCal" target="_blank" rel="noopener">
               Consultar servicios
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14"></path>
@@ -845,7 +845,7 @@
             <h2>Cuéntanos qué electrodoméstico falla</h2>
             <p>ElecCal revisará tu caso y te responderá con los próximos pasos.</p>
           </div>
-          <form id="leadForm" action="mailto:victorcrodrigo@gmail.com" method="post" enctype="text/plain">
+          <form id="leadForm" action="https://mail.google.com/mail/" method="get">
             <label>
               Nombre
               <input name="nombre" autocomplete="name" required placeholder="Tu nombre">
@@ -1074,7 +1074,7 @@
             <h2>¿La lavadora se ha parado o el frigorífico no enfría?</h2>
             <p>Describe la avería y recibe una primera orientación para decidir si conviene reparar, revisar o sustituir.</p>
           </div>
-          <a class="button light" href="mailto:victorcrodrigo@gmail.com?subject=Solicitud%20de%20revisi%C3%B3n%20ElecCal">
+          <a class="button light" href="https://mail.google.com/mail/?view=cm&fs=1&to=victorcrodrigo%40gmail.com&su=Solicitud%20de%20revisi%C3%B3n%20ElecCal" target="_blank" rel="noopener">
             Solicitar revisión
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14"></path>
@@ -1146,7 +1146,7 @@
             <h2>Soluciones que funcionan, confianza que dura.</h2>
             <p>Servicio técnico de electrodomésticos con trato directo, presupuesto transparente y orientación local.</p>
           </div>
-          <a class="button" href="mailto:victorcrodrigo@gmail.com?subject=Solicitud%20de%20presupuesto%20ElecCal">
+          <a class="button" href="https://mail.google.com/mail/?view=cm&fs=1&to=victorcrodrigo%40gmail.com&su=Solicitud%20de%20presupuesto%20ElecCal" target="_blank" rel="noopener">
             Pedir presupuesto
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14"></path>
@@ -1165,8 +1165,8 @@
         Servicio técnico de electrodomésticos en Ciudad Rodrigo y comarca.
       </div>
       <div class="footer-links">
-        <a href="mailto:victorcrodrigo@gmail.com">victorcrodrigo@gmail.com</a>
-        <a href="mailto:victorcrodrigo@gmail.com?subject=Solicitud%20de%20diagn%C3%B3stico%20ElecCal">Solicitar diagnóstico</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=victorcrodrigo%40gmail.com" target="_blank" rel="noopener">victorcrodrigo@gmail.com</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=victorcrodrigo%40gmail.com&su=Solicitud%20de%20diagn%C3%B3stico%20ElecCal" target="_blank" rel="noopener">Solicitar diagnóstico</a>
       </div>
     </div>
   </footer>
@@ -1174,6 +1174,16 @@
   <script>
     const form = document.querySelector("#leadForm");
     const email = "victorcrodrigo@gmail.com";
+    const composeUrl = (subject, body = "") => {
+      const params = new URLSearchParams({
+        view: "cm",
+        fs: "1",
+        to: email,
+        su: subject,
+        body
+      });
+      return `https://mail.google.com/mail/?${params.toString()}`;
+    };
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -1193,7 +1203,8 @@
         data.get("mensaje")
       ].join("\n");
 
-      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const opened = window.open(composeUrl(subject, body), "_blank", "noopener");
+      if (!opened) window.location.href = composeUrl(subject, body);
     });
   </script>
 </body>
